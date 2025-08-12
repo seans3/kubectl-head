@@ -86,6 +86,12 @@ To run the unit tests for this project, use the following command:
 go test ./pkg/head
 ```
 
+To run the end-to-end tests, you will need to have `kind` installed. You can install it by following the instructions [here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). Once you have `kind` installed, you can run the e2e tests with the following command:
+
+```bash
+E2E_TEST=1 go test -v ./e2e
+```
+
 -----
 
 ## 💻 Usage
