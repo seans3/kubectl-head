@@ -101,6 +101,8 @@ func (o *HeadOptions) Validate() error {
 }
 
 // Run executes the head command logic.
+var newRestClient = NewRestClient
+
 func (o *HeadOptions) Run() error {
 	gvr, err := o.GetResourceGVR()
 	if err != nil {
@@ -113,7 +115,7 @@ func (o *HeadOptions) Run() error {
 	}
 
 	// We need a REST client that can negotiate for Table output.
-	restClient, err := NewRestClient(*o.RESTConfig, gvr.GroupVersion())
+	restClient, err := newRestClient(*o.RESTConfig, gvr.GroupVersion())
 	if err != nil {
 		return err
 	}
