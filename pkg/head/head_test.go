@@ -25,6 +25,30 @@ func TestNewHeadOptions(t *testing.T) {
 	}
 }
 
+func TestComplete(t *testing.T) {
+	streams := genericclioptions.NewTestIOStreamsDiscard()
+	opts := NewHeadOptions(streams)
+
+	// Use memory-backed config flags for testing to avoid loading from the filesystem.
+	opts.ConfigFlags = genericclioptions.NewConfigFlags(true)
+	*opts.ConfigFlags.Namespace = "test"
+
+	err := opts.Complete("pods")
+	if err != nil {
+		t.Fatalf("unexpected error during Complete: %v", err)
+	}
+
+	if opts.DynamicClient == nil {
+		t.Error("DynamicClient should have been initialized")
+	}
+	if opts.Mapper == nil {
+		t.Error("Mapper should have been initialized")
+	}
+	if opts.Namespace != "test" {
+		t.Errorf("expected namespace to be 'test', got %q", opts.Namespace)
+	}
+}
+
 func TestValidate(t *testing.T) {
 	testCases := []struct {
 		name          string
