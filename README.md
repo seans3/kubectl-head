@@ -147,6 +147,8 @@ If the list of resources is larger than the specified limit, `kubectl-head` will
     pod-f    1/1     Running   0          1d
     ```
 
+> **Note on Token Lifespan**: The `continue` token is ephemeral and typically expires within 5 to 15 minutes. This is a feature of the Kubernetes API server, not `kubectl-head` itself. The short lifespan is a security and resource management measure to prevent old, paginated requests from consuming server resources indefinitely. If your token expires, you will need to start your query again from the beginning.
+
 -----
 
 ## 🏗️ Design and Implementation
