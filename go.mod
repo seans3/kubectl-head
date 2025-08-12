@@ -1,6 +1,8 @@
-module github.com/seans3/peek
+module github.com/seans3/head
 
 go 1.24.4
+
+replace github.com/seans3/head => ./
 
 require (
 	github.com/spf13/cobra v1.9.1

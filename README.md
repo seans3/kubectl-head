@@ -55,7 +55,7 @@ go mod tidy
 The output binary name is critical. For `kubectl` to recognize it as a plugin, it must be named `kubectl-head`.
 
 ```bash
-go build -o kubectl-head .
+go build -o kubectl-head ./cmd/kubectl-head
 ```
 
 **Make the Binary Executable**
@@ -76,6 +76,14 @@ Check if `kubectl` lists your new plugin. You should see `head` in the list of a
 
 ```bash
 kubectl
+```
+
+### Running Tests
+
+To run the unit tests for this project, use the following command:
+
+```bash
+go test ./pkg/head
 ```
 
 -----
